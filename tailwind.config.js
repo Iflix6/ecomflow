@@ -7,7 +7,11 @@ export default {
     "./resources/js//Pages/*.jsx",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'xs': '440px', // Custom breakpoint for 440px
+      },
+    },
   },
   plugins: [],
 }

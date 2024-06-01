@@ -2,6 +2,7 @@ import { useState } from 'react';
 import heart from '../../Images/heart.png';
 import cart from '../../Images/cart.png';
 import search from '../../Images/search.png';
+import logoNav from '../../Images/logoNav.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,111 +11,76 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleInputChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Perform search logic with searchTerm
+    console.log('Search term:', searchTerm);
+    // Reset the search term after submission
+    setSearchTerm('');
+  };
+
   return (
     <>
-      <div className="flex items-center mt-4 p-4">
-        <div className="mr-auto">
-          <h2 className="text-2xl font-bold">EcomFlow</h2>
+      <div className='flex flex-row justify-around items-center bg-white p-4  mt-4 ml-4'>
+        <div className='flex flex-row items-center'>
+        <img src={logoNav} alt="logo" className="w-8 h-8 filter-light-green" />
+        <style jsx>{`
+          .filter-light-green {
+            filter: brightness(0) saturate(100%) invert(88%) sepia(44%) saturate(7484%) hue-rotate(72deg) brightness(93%) contrast(101%);
+          }
+        `}</style>
+
+            <h3 className=' font-bold items-stretch pl-1 text-[30px] '>Molla</h3>
         </div>
-        <div className="hidden md:flex md:items-center md:space-x-6 w-full justify-center">
-          <ul className="flex space-x-6 ml-auto mr-auto">
-            <li>
-              <a className="underline pb-4" href="/">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="/">Contact</a>
-            </li>
-            <li>
-              <a href="/">About</a>
-            </li>
-            <li>
-              <a href="/">Sign Up</a>
-            </li>
-          </ul>
-          <div className="flex items-center space-x-6 ml-auto">
+
+        <div className=''> 
+        <form onSubmit={handleSubmit} className="flex items-center">
             <div className="relative">
-              <input
-                className="border-2 outline-none bg-slate-200 text-pl-2 w-[250px] py-1 px-2"
-                type="text"
-                id="inputField"
-                placeholder="What are you looking for?"
-              />
-              <img
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 mr-2"
-                src={search}
-                alt="search"
-              />
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={handleInputChange}
+                    placeholder="Search Product..."
+                    className="pl-10 pr-12 py-2 rounded-md border border-gray-300 focus:outline-none w-[600px]"
+                  />
+                  <button
+                    type="submit"
+                    className="absolute inset-y-0 right-0 px-4 py-2 bg-transparent text-black rounded-r-md focus:outline-none"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                  </button>
             </div>
-            <img src={heart} alt="heart" />
-            <img src={cart} alt="cart" />
+        </form>
+        </div>
+        <div>
+          <div className='flex flex-col items-center'>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                  
+              </svg>
+              <p>Account</p>
           </div>
+
         </div>
-        <div className="md:hidden">
-          <button
-            type="button"
-            className="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600"
-            onClick={toggleDropdown}
-          >
-            {isOpen ? (
-              <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
-                <path
-                  fillRule="evenodd"
-                  d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
-                ></path>
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
-                <path
-                  fillRule="evenodd"
-                  d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-                ></path>
-              </svg>
-            )}
-          </button>
-        </div>
+
       </div>
-      {isOpen && (
-        <div className="md:hidden">
-          <div className="flex flex-col space-y-4 mt-4 justify-center items-center">
-            <ul className="flex flex-col space-x-6">
-              <li>
-                <a className="underline pb-4 ml-6" href="/">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="/">Contact</a>
-              </li>
-              <li>
-                <a href="/">About</a>
-              </li>
-              <li>
-                <a href="/">Sign Up</a>
-              </li>
-            </ul>
-            <div className="relative">
-              <input
-                className="border-2 outline-none bg-slate-200 text-pl-2 w-auto py-1 px-2"
-                type="text"
-                id="inputField"
-                placeholder="What are you looking for?"
-              />
-              <img
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 mr-2"
-                src={search}
-                alt="search"
-              />
-            </div>
-            <div className="flex space-x-6">
-              <img src={heart} alt="heart" />
-              <img src={cart} alt="cart" />
-            </div>
-          </div>
-        </div>
-      )}
-      <hr />
+      <hr className='ml-auto mr-auto w-[80%] items-center'/>
     </>
   );
 };
