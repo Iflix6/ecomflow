@@ -10,7 +10,7 @@ const Ads = () => {
 
   return (
     <div className='flex flex-row justify-around items-center  bg-slate-50 p-2 text-black font-light xs:flex-row ml-auto mr-auto'>
-      <div className='flex flex-row xs:w-full xs:p-1 '>
+      <div className='flex flex-row xs:w-full xs:p-1 lg:ml-36'>
         <p className=''>Special collection already available.</p>
         <a href="#">&nbsp;Read more ...</a>
       </div>
@@ -38,7 +38,7 @@ const Ads = () => {
         </div>
         
         {/* Content shown in row format on large devices */}
-        <div className='hidden lg:flex lg:flex-row lg:gap-6 lg:items-center text-nowrap'>
+        <div className='hidden lg:flex lg:flex-row lg:gap-6 lg:items-center text-nowrap lg:mr-36'>
           <select className='outline-none bg-slate-50 border-0'>
             <option className='outline-none bg-slate-50 rounded-md shadow-sm'>USD</option>
             <option className='outline-none bg-slate-50 rounded-md shadow-sm'>EURO</option>
